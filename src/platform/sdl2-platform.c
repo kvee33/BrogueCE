@@ -218,15 +218,19 @@ static boolean pollBrogueEvent(rogueEvent *returnEvent, boolean textInput) {
                 } else if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_RIGHT) {
                     returnEvent->eventType = RIGHT_MOUSE_UP;
                 }
-                returnEvent->param1 = event.button.x * COLS / windowWidth;
-                returnEvent->param2 = event.button.y * ROWS / windowHeight;
+                int offsetX = (windowWidth - innerWidth) / 2;
+                int offsetY = (windowHeight - innerHeight) / 2;
+                returnEvent->param1 = (event.button.x - offsetX) * COLS / innerWidth;
+                returnEvent->param2 = (event.button.y - offsetY) * ROWS / innerHeight;
                 return true;
             }
         } else if (event.type == SDL_MOUSEMOTION) {
             // We don't want to return on a mouse motion event, because only the last
             // in the queue is important. That's why we just set ret=true
-            int xcell = event.motion.x * COLS / windowWidth,
-                ycell = event.motion.y * ROWS / windowHeight;
+            int offsetX = (windowWidth - innerWidth) / 2;
+            int offsetY = (windowHeight - innerHeight) / 2;
+            int xcell = (event.motion.x - offsetX) * COLS / innerWidth,
+                ycell = (event.motion.y - offsetY) * ROWS / innerHeight;
             if (xcell != mx || ycell != my) {
                 returnEvent->eventType = MOUSE_ENTERED_CELL;
                 returnEvent->param1 = xcell;

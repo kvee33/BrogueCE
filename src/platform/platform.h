@@ -94,6 +94,8 @@ unsigned int glyphToUnicode(enum displayGlyph glyph);
 extern struct brogueConsole sdlConsole;
 extern int windowWidth;
 extern int windowHeight;
+extern int innerWidth;
+extern int innerHeight;
 extern boolean fullScreen;
 extern boolean softwareRendering;
 #endif

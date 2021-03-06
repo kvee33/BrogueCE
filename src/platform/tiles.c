@@ -60,6 +60,8 @@ static int baseTileHeight = -1;     // height (px) of tiles in the smallest text
 
 int windowWidth = -1;               // the SDL window's width (in "screen units", not pixels)
 int windowHeight = -1;              // the SDL window's height (in "screen units", not pixels)
+int innerWidth = -1;                // the SDL window's content width (in "screen units", not pixels)
+int innerHeight = -1;               // the SDL window's content height (in "screen units", not pixels)
 boolean fullScreen = false;         // true if the window should be full-screen, else false
 boolean softwareRendering = false;  // true if hardware acceleration is disabled (by choice or by force)
 
@@ -617,7 +619,21 @@ void updateScreen() {
     if (SDL_GetRendererOutputSize(renderer, &outputWidth, &outputHeight) < 0) sdlfatal(__FILE__, __LINE__);
     if (outputWidth == 0 || outputHeight == 0) return;
 
-    createTextures(renderer, outputWidth, outputHeight);
+    // adjust for constant aspect ratio of 1900:1122
+    if (outputWidth > outputHeight * 1900/1122) {
+        // adjust width
+        innerWidth = outputHeight * 1900/1122;
+        innerHeight = outputHeight;
+    } else {
+        // adjust height
+        innerWidth = outputWidth;
+        innerHeight = outputWidth * 1122/1900;
+    }
+
+    int offsetX = (outputWidth - innerWidth) / 2;
+    int offsetY = (outputHeight - innerHeight) / 2;
+
+    createTextures(renderer, innerWidth, innerHeight);
 
     if (!softwareRendering) {
         // black out the frame (double-buffering invalidated it)
@@ -635,11 +651,11 @@ void updateScreen() {
     for (int step = -1; step < numTextures; step++) {
 
         for (int x = 0; x < COLS; x++) {
-            int tileWidth = ((x+1) * outputWidth / COLS) - (x * outputWidth / COLS);
+            int tileWidth = ((x+1) * innerWidth / COLS) - (x * innerWidth / COLS);
             if (tileWidth == 0) continue;
 
             for (int y = 0; y < ROWS; y++) {
-                int tileHeight = ((y+1) * outputHeight / ROWS) - (y * outputHeight / ROWS);
+                int tileHeight = ((y+1) * innerHeight / ROWS) - (y * innerHeight / ROWS);
                 if (tileHeight == 0) continue;
 
                 ScreenTile *tile = &screenTiles[y][x];
@@ -655,8 +671,8 @@ void updateScreen() {
                     SDL_Rect dest;
                     dest.w = tileWidth;
                     dest.h = tileHeight;
-                    dest.x = x * outputWidth / COLS;
-                    dest.y = y * outputHeight / ROWS;
+                    dest.x = offsetX + x * innerWidth / COLS;
+                    dest.y = offsetY + y * innerHeight / ROWS;
 
                     // paint the background
                     if (SDL_SetRenderDrawColor(renderer,
@@ -688,8 +704,8 @@ void updateScreen() {
                     SDL_Rect dest;
                     dest.w = tileWidth;
                     dest.h = tileHeight;
-                    dest.x = x * outputWidth / COLS;
-                    dest.y = y * outputHeight / ROWS;
+                    dest.x = offsetX + x * innerWidth / COLS;
+                    dest.y = offsetY + y * innerHeight / ROWS;
 
                     // blend the foreground
                     if (SDL_SetTextureColorMod(Textures[step],
