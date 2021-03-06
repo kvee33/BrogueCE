@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="brogue">
+      <UniqueIdentifier>{3cb5ab1b-4d82-420b-9560-2471300ff06e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{5a1f89d9-a1fe-482a-bf20-07d4167fed7b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\brogue\Architect.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Buttons.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Combat.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Dijkstra.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Globals.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Grid.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\IO.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Items.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Light.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\MainMenu.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Math.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Monsters.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Movement.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\PowerTables.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Recordings.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\RogueMain.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\SeedCatalog.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Time.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\brogue\Utilities.c">
+      <Filter>brogue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\platform\main.c">
+      <Filter>platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\platform\platformdependent.c">
+      <Filter>platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\platform\sdl2-platform.c">
+      <Filter>platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\platform\tiles.c">
+      <Filter>platform</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\brogue\IncludeGlobals.h">
+      <Filter>brogue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\brogue\Rogue.h">
+      <Filter>brogue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\platform\platform.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\platform\PlatformDefines.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\platform\tiles.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+</Project>
