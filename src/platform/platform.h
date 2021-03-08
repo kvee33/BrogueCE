@@ -97,6 +97,7 @@ extern int windowHeight;
 extern int innerWidth;
 extern int innerHeight;
 extern boolean fullScreen;
+extern boolean stretch;
 extern boolean softwareRendering;
 #endif
 

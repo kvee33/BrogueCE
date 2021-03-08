@@ -63,6 +63,7 @@ int windowHeight = -1;              // the SDL window's height (in "screen units
 int innerWidth = -1;                // the SDL window's content width (in "screen units", not pixels)
 int innerHeight = -1;               // the SDL window's content height (in "screen units", not pixels)
 boolean fullScreen = false;         // true if the window should be full-screen, else false
+boolean stretch = false;            // true if the content should fill the entire window / screen
 boolean softwareRendering = false;  // true if hardware acceleration is disabled (by choice or by force)
 
 
@@ -619,15 +620,21 @@ void updateScreen() {
     if (SDL_GetRendererOutputSize(renderer, &outputWidth, &outputHeight) < 0) sdlfatal(__FILE__, __LINE__);
     if (outputWidth == 0 || outputHeight == 0) return;
 
-    // adjust for constant aspect ratio of 1900:1122
-    if (outputWidth > outputHeight * 1900/1122) {
-        // adjust width
-        innerWidth = outputHeight * 1900/1122;
+    if (stretch) {
+        // use the output size directly
+        innerWidth = outputWidth;
         innerHeight = outputHeight;
     } else {
-        // adjust height
-        innerWidth = outputWidth;
-        innerHeight = outputWidth * 1122/1900;
+        // adjust for constant aspect ratio of 1900:1122
+        if (outputWidth > outputHeight * 1900/1122) {
+            // adjust width
+            innerWidth = outputHeight * 1900/1122;
+            innerHeight = outputHeight;
+        } else {
+            // adjust height
+            innerWidth = outputWidth;
+            innerHeight = outputWidth * 1122/1900;
+        }
     }
 
     int offsetX = (outputWidth - innerWidth) / 2;

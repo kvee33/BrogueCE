@@ -30,6 +30,7 @@ static void printCommandlineHelp() {
     "--size N                   starts the game at font size N (1 to 20)\n"
     "--graphics     -G          enable graphical tiles\n"
     "--full-screen  -F          enable full screen\n"
+    "--stretch                  stretch content to fill the entire window / screen\n"
     "--no-gpu                   disable hardware-accelerated graphics and HiDPI\n"
 #endif
 #ifdef BROGUE_CURSES
@@ -195,6 +196,11 @@ int main(int argc, char *argv[])
 
         if (strcmp(argv[i], "-F") == 0 || strcmp(argv[i], "--full-screen") == 0) {
             fullScreen = true;
+            continue;
+        }
+
+        if (strcmp(argv[i], "--stretch") == 0) {
+            stretch = true;
             continue;
         }
 
