@@ -138,6 +138,8 @@ xcopy /E /Y $(SolutionDir)..\bin $(TargetDir)</Command>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>DATADIR=.;BROGUE_EXTRA_VERSION="_VS";BROGUE_SDL;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <UseFullPaths>false</UseFullPaths>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -146,6 +148,7 @@ xcopy /E /Y $(SolutionDir)..\bin $(TargetDir)</Command>
       <ManifestFile>$(SolutionDir)..\windows\brogue.exe.manifest</ManifestFile>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
       <Command>copy $(SolutionDir)lib\x86\*.dll $(TargetDir)
@@ -164,6 +167,8 @@ xcopy /E /Y $(SolutionDir)..\bin $(TargetDir)</Command>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>DATADIR=.;BROGUE_EXTRA_VERSION="_VS";BROGUE_SDL;_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <UseFullPaths>false</UseFullPaths>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -172,6 +177,7 @@ xcopy /E /Y $(SolutionDir)..\bin $(TargetDir)</Command>
       <ManifestFile>$(SolutionDir)..\windows\brogue.exe.manifest</ManifestFile>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
       <Command>copy $(SolutionDir)lib\x64\*.dll $(TargetDir)
